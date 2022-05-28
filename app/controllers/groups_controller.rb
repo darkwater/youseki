@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   end
 
   def new
-    Group.new.save
+    Group.create
 
     redirect_to root_path
   end

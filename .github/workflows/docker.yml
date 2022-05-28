@@ -1,0 +1,30 @@
+name: Docker
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - id: version_number
+      run: echo "::set-output name=version::$(date +%Y.%m.%d.%H.%M)"
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ghcr.io/darkwater/youseki:latest
+
+    - name: Add version tag
+      run: docker tag ghcr.io/darkwater/youseki:latest ghcr.io/darkwater/youseki:${{ steps.version_number.outputs.version }}
+
+    - name: Log in to registry
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+
+    - name: Push the Docker image
+      run: |
+        docker push ghcr.io/darkwater/youseki:latest
+        docker push ghcr.io/darkwater/youseki:${{ steps.version_number.outputs.version }}

@@ -10,8 +10,7 @@ class BookmarksController < ApplicationController
 
   def create
     @group = Group.find(params[:group_id])
-    @bookmark = @group.bookmarks.build(bookmark_params)
-    @bookmark.save
+    @group.bookmarks.create(bookmark_params)
 
     redirect_to root_path, status: 303
   end
