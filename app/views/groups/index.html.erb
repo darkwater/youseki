@@ -1,0 +1,25 @@
+<% @groups.each do |group| %>
+  <ul>
+    <% group.bookmarks.each do |bookmark| %>
+      <li>
+        <%= link_to bookmark.label, bookmark.url %>
+
+        <%= link_to "(x)", group_bookmark_path(group, bookmark), data: {
+          turbo_method: :delete,
+        } %>
+      </li>
+    <% end %>
+    <li>
+      <%= link_to "Add Bookmark", new_group_bookmark_path(group.id) %>
+    </li>
+    <li>
+      <%= link_to "Delete Group", group_path(group), data: {
+        turbo_method: :delete,
+      } %>
+    </li>
+  </ul>
+<% end %>
+
+<li>
+  <%= link_to "Add Group", new_group_path %>
+</li>
