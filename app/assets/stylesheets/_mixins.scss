@@ -1,0 +1,11 @@
+@mixin button-effect {
+  color: #efefef;
+  text-decoration: none;
+
+  &:hover {
+    color: white;
+    background: rgba(21, 22, 24, 0.8);
+  }
+
+  transition: background 0.05s linear;
+}

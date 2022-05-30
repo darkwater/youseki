@@ -7,3 +7,5 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Group.create
+
+Setting.set("background", "#212733")

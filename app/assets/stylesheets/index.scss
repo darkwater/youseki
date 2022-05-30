@@ -1,0 +1,88 @@
+@import "colors";
+@import "mixins";
+@import "remixicon";
+
+#bookmarks-content {
+  position: absolute;
+  left: 2em;
+  top: 2em;
+  right: 2em;
+  // bottom: 4em;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2em;
+
+  & > * {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul.group {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+
+    background: rgba(21, 22, 24, 0.6);
+
+    li.spacer {
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 40px;
+    }
+
+    li.bookmark {
+      display: flex;
+
+      a {
+        display: inline-block;
+        padding: 0.7em 1.2em;
+
+        @include button-effect;
+
+        &.link {
+          flex-grow: 1;
+          width: auto;
+        }
+
+        &.delete {
+          @include remixicon("delete-bin");
+
+          width: 2ex;
+          text-align: center;
+
+          &:hover { color: $red; }
+        }
+      }
+    }
+
+    li.manage-group {
+      display: flex;
+
+      a {
+        flex-grow: 1;
+        padding: 0.7em 1.2em;
+        text-align: center;
+
+        @include button-effect;
+
+        &.add-bookmark { @include remixicon("add"); }
+        &.delete-group { @include remixicon("delete-bin"); }
+        &.delete-group:hover { color: $red; }
+      }
+    }
+  }
+
+  a.add-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.7em 1.2em;
+
+    background:rgba(21, 22, 24, 0.3);
+
+    @include button-effect;
+    @include remixicon("add");
+  }
+}
+

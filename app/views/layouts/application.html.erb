@@ -8,6 +8,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <style type="text/css">
+      html {
+        --user-background: <%= Setting.get("background", "default") %>;
+      }
+    </style>
   </head>
 
   <body>

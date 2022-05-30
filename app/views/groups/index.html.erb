@@ -1,25 +1,33 @@
-<% @groups.each do |group| %>
-  <ul>
-    <% group.bookmarks.each do |bookmark| %>
-      <li>
-        <%= link_to bookmark.label, bookmark.url %>
+<div id="bookmarks-content">
+  <% @groups.each do |group| %>
+    <ul class="group">
+      <% group.bookmarks.each do |bookmark| %>
+        <li class="bookmark">
+          <%= link_to bookmark.label, bookmark.url, class: "link" %>
 
-        <%= link_to "(x)", group_bookmark_path(group, bookmark), data: {
-          turbo_method: :delete,
-        } %>
+          <%= link_to "", [group, bookmark],
+            class: "delete",
+            data: {
+              turbo_method: :delete,
+            } %>
       </li>
     <% end %>
-    <li>
-      <%= link_to "Add Bookmark", new_group_bookmark_path(group.id) %>
-    </li>
-    <li>
-      <%= link_to "Delete Group", group_path(group), data: {
-        turbo_method: :delete,
-      } %>
+
+    <li class="spacer"></li>
+
+    <li class="manage-group">
+      <%= link_to "", new_group_bookmark_path(group.id), class: "add-bookmark" %>
+
+      <% if group.bookmarks.empty? %>
+        <%= link_to "", group,
+          class: "delete-group",
+          data: {
+            turbo_method: :delete,
+          } %>
+      <% end %>
     </li>
   </ul>
-<% end %>
+  <% end %>
 
-<li>
-  <%= link_to "Add Group", new_group_path %>
-</li>
+  <%= link_to "", new_group_path, class: "add-group" %>
+</div>

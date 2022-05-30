@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_28_013419) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_29_174148) do
   create_table "bookmarks", force: :cascade do |t|
     t.string "url"
     t.string "label"
@@ -22,6 +22,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_28_013419) do
   create_table "groups", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string "key"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["key"], name: "index_settings_on_key", unique: true
   end
 
 end

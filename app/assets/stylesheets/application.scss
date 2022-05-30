@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: var(--user-background);
+    color: #efefef;
+    font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Segoe UI, Helvetica Neue, Helvetica, Cantarell, Ubuntu, Roboto, Noto, Arial, sans-serif;
+}

@@ -1,8 +1,4 @@
 class BookmarksController < ApplicationController
-  def index
-    @bookmarks = Bookmark.all
-  end
-
   def new
     @group = Group.find(params[:group_id])
     @bookmark = @group.bookmarks.build
