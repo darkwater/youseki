@@ -1,6 +1,6 @@
 FROM ruby:3.0
 
-RUN apt-get update -qq && apt-get install -y sqlite3 libsqlite3-dev
+RUN apt-get update -qq && apt-get install -y sqlite3 libsqlite3-dev libvips-dev libvips42
 RUN gem install bundler
 RUN bundle config --global frozen 1
 

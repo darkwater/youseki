@@ -6,7 +6,9 @@ class BookmarksController < ApplicationController
 
   def create
     @group = Group.find(params[:group_id])
-    @group.bookmarks.create(bookmark_params)
+    bookmark = @group.bookmarks.create(bookmark_params)
+
+    FetchFaviconJob.perform_later(bookmark)
 
     redirect_to root_path, status: 303
   end

@@ -1,9 +1,17 @@
 <div id="bookmarks-content">
   <% @groups.each do |group| %>
     <ul class="group">
-      <% group.bookmarks.each do |bookmark| %>
+      <% group.bookmarks.with_attached_favicon.each do |bookmark| %>
         <li class="bookmark">
-          <%= link_to bookmark.label, bookmark.url, class: "link" %>
+          <%= link_to(bookmark.url, html_options = { class: "link" }) do %>
+            <div class="favicon"
+              <% if bookmark.favicon.attached? %>
+                style="background-image: url(<%= url_for(bookmark.favicon.variant(:png)) %>);"
+              <% end %>
+            ></div>
+
+            <%= bookmark.label %>
+          <% end %>
 
           <%= link_to "", [group, bookmark],
             class: "delete",

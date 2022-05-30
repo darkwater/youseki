@@ -34,6 +34,17 @@
     li.bookmark {
       display: flex;
 
+      div.favicon {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        background-size: cover;
+
+        position: relative;
+        top: 2px;
+      }
+
       a {
         display: inline-block;
         padding: 0.7em 1.2em;
