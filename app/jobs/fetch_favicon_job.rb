@@ -8,7 +8,7 @@ class FetchFaviconJob < ApplicationJob
 
     doc = Nokogiri::HTML(URI.open(uri))
 
-    favicon_url = doc.css('link[rel="shortcut icon"]').first["href"] rescue nil
+    favicon_url = doc.css('link[rel="shortcut icon"], link[rel="icon"]').first["href"] rescue nil
 
     if favicon_url.nil?
       favicon_url = URI.join(uri, "/favicon.ico").to_s
@@ -19,5 +19,9 @@ class FetchFaviconJob < ApplicationJob
     io = URI.open(favicon_url)
 
     bookmark.favicon.attach(io: io, filename: URI.parse(favicon_url).path.split("/").last)
+
+    unless bookmark.favicon.variable?
+      bookmark.favicon.delete
+    end
   end
 end
